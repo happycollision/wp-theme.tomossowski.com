@@ -1,0 +1,31 @@
+@import "mixins"
+
+.indicators
+  position: fixed
+  top: 0
+  left: 0
+  margin: 20px
+  z-index: 1000
+
+  div
+    float: left
+    width: 30px
+    height: 30px
+    margin-right: 10px
+    border-radius: 100%
+    border: 2px solid white
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.5)
+  .tiny
+    background: blue
+  .baby
+    background: green
+    +break(smallest)
+      display: none
+  .mama
+    background: gold
+    +break(baby-bear-down)
+      display: none
+  .papa
+    background: red
+    +break(mama-bear-down)
+      display: none

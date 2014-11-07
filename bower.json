@@ -1,0 +1,21 @@
+{
+  "name": "tomossowski.com",
+  "version": "0.0.0",
+  "authors": [
+    "Don Denton <don@happycollision.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {},
+  "dependencies": {
+    "modernizr": "~2.8.3"
+  }
+}
