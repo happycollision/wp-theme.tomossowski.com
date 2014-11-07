@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 		paths: {
 			app: 'app',
 			dist: 'tomossowski'
-		}
+		},
 	  compass: {
 	  	options: {
 	  		sassDir: '<%= paths.app %>/scss',
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 	  	},
 	  	dist: {
 	  		options: {
-		  		specify: ['<%= paths.app %>/scss/**/*.scss','!<%= paths.app %>/scss/testing.sass'],
+		  		specify: ['<%= paths.app %>/scss/**/*.{scss,sass}','!<%= paths.app %>/scss/testing.sass'],
 		  		debugInfo: false
 	  		},
 	  	},
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
 						drop_console: true
 					}
 				},
-				files: uglifyFiles
+				files: {}
 			}
 		},
 		concat:{
@@ -75,7 +75,7 @@ module.exports = function(grunt) {
 			},
 			testJs:{
 				files: {
-					'.tmp/js/plugins.js' : ['js/plugins.js','<%= paths.app %>/js/tests.js'],
+					'.tmp/js/plugins.js' : ['<%= paths.app %>/js/plugins.js','<%= paths.app %>/js/tests.js'],
 					'<%= paths.dist %>/js/plugins.js' : ['.tmp/js/plugins.js']
 				}
 			}
@@ -91,7 +91,7 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: '<%= paths.app %>/',
-					src: ['*.ico','images/*'],
+					src: ['*.ico','images/*','js/**/*'],
 					dest: '<%= paths.dist %>/'					
 				}]
 			},
