@@ -3,7 +3,7 @@ Theme Name: Tom Ossowski
 Description: (None)
 Author: Double D Photo &amp; Design
 Author URI: http://happycollision.com
-Version: 2.0
+Version: 2.1
 Tags: 
 */
 
@@ -11,18 +11,28 @@ Tags:
 @import 'wp_basics';
 
 
+@mixin serif {
+	font-family: "garamond pro", "garamond-premier-pro-subhead", Times, serif;
+}
+
+@mixin bold-heading-type {
+	font-family: "azo-sans-uber", "Helvetica Black", Helvetica, sans-serif;
+}
+
+$main-text-color: #222;
+$main-bg-color: #eee;
+$alt-bg-color: #bbb;
+
 /*********************************************************************
 **********************************************************************
 
 		Definitions:
 		
-		Shades of grey:
-		rgba(0,0,0,0.5) against a #555 background == #2a2a2a;
-		
+		Shades of grey:		
 */
 		@mixin trans-grey {
-			background-color:#2a2a2a;
-			background-color:rgba(0,0,0,0.5);
+			background-color: $alt-bg-color;
+			//background-color:rgba(0,0,0,0.5);
 		}
 /*		
 
@@ -30,9 +40,8 @@ Tags:
 		rgba(100,20,20,0.8) against a #555 background ~= #522;
 		
 */
-		@mixin trans-red {
-			background-color:#522;
-			background-color:rgba(100,20,20,0.8);
+		@mixin trans-color {
+			background-color:darken($alt-bg-color, 20);
 		}
 /*	
 
@@ -79,10 +88,9 @@ Tags:
 **********************************************************************
 *********************************************************************/
 body {
-	background: #555;
-	background:-webkit-linear-gradient(#333 0%, #555 50px);
-	background:linear-gradient(#333 0%, #555 50px);
+	background: $main-bg-color;
 	line-height: normal;
+	font-family: "museo-sans", sans-serif;
 }
 
 p{
@@ -122,7 +130,7 @@ blockquote{
 	height:0px;
 }
 a, a:link, a:visited{
-	color:#ccc;
+	color: #000;
 }
 .left{
 	float:left;
@@ -141,7 +149,7 @@ a, a:link, a:visited{
 }
 .show_title{
 	font-style: italic;
-	font-variant: small-caps;
+	//font-variant: small-caps;
 }
 
 header, #main_navigation, #main_content, footer{
@@ -214,7 +222,7 @@ body {
 		font-size: 1.2em;
 	
 		&:hover{
-			@include trans-red;
+			@include trans-color;
 		}
 		
 	}
@@ -303,15 +311,14 @@ header{
 		text-decoration: none;
 	}
 	h1{
-		color: #ddd;
+		color: #444;
 		text-align: center;
 		padding:auto;
 		margin:1em auto 0.5em;
 		font-size: 2.6em;
 		font-weight: bold;
-		text-shadow: 3px 3px 5px #000;
-		letter-spacing: 0.1em;
 		line-height: 1em;
+		@include bold-heading-type;
 		
 		@include breakpoint(mama-bear){
 			font-size: 4em;
@@ -331,7 +338,7 @@ $praise_alt_color: #555;
 #praise_box{
 	margin:1.7em auto;
 	@include trans-grey;
-	color:#999;
+	color: $main-text-color;
 	padding: 0;
 	@include border-radius();
 	@include breakpoint(mama-bear){
@@ -340,28 +347,7 @@ $praise_alt_color: #555;
 	@include breakpoint(baby-bear){
 		padding:1em;
 	}
-	
-	img{
-		display: block;
-		float:left;
-		@include border-radius();
-		max-width:100%;
-		margin:1em;
-		@include breakpoint(mama-bear){
-			max-width: 48%;
-			margin-right:1.5em;
-			margin-bottom: 1em;
-		}
-		@include breakpoint(baby-bear){
-			width:100%;
-			margin: auto;
-			float:none;
-		}
-		@include breakpoint(papa-bear){
-			margin-right:4em;
-		}
-	}
-	
+		
 	@mixin quote_marks{
 		position: relative;
 		display: block;
@@ -377,6 +363,7 @@ $praise_alt_color: #555;
 		@include breakpoint(papa-bear){
 			font-size: 1.3em;
 			padding-right:1.5em;
+			padding-left:1.5em;
 			&:before{
 				@include quote_marks;
 				content: "\201c";
@@ -418,19 +405,17 @@ $praise_alt_color: #555;
 		Articles
 --------------------------------------------------------------------*/
 article{
-	@include trans-grey;
 	@include border-radius();
 	padding:1em;
 	padding-bottom:3em;
-	color:#999;
+	color: $main-text-color;
 	margin-bottom:12px;
 }
 .entry-title{
 	text-align: center;
 	margin: 0.4em auto 1em;
 	font-size: 2em;
-	color:#777;
-	text-shadow: -1px -1px 0 #ccc, 1px 1px 0 #000;
+	color: $main-text-color;
 	
 	@include breakpoint(papa-bear){
 		font-size: 3em;
@@ -438,6 +423,23 @@ article{
 }
 .entry-content{
 	line-height: 1.5em;
+
+	img {
+		padding: 8px;
+		background-color: #fff;
+		margin: 4px;
+		box-shadow: 1px 1px 1px darken($main-bg-color, 20);
+	}
+}
+
+.entry-content img.bio-image {
+	max-width: 100%;
+
+	@include breakpoint(mama-bear){
+		width: 300px;
+		float: left;
+		margin-right: 16px;
+	}
 }
 
 
@@ -463,7 +465,7 @@ article[class~="type-page"] .entry-title,
 article[class~="type-page"] .entry-title,
 .entry-title.page-title{
 	@include trans-grey;
-	color: #555;
+	color: $main-bg-color;
 	font-size: 5em;
 	line-height: 0.6em;
 	text-align: right;
@@ -500,11 +502,9 @@ article[class~="type-page"] .entry-title,
 
 /* Wraps the entry content in a dark box instead of the whole article for Page-type articles */
 article[class~="type-page"] .entry-content{
-	@include trans-grey;
-	@include border-radius();
 	padding:1em;
 	padding-bottom:3em;
-	color:#999;
+	color: $main-text-color;
 
 	& > :first-child{
 		margin-top:1em !important;
@@ -514,7 +514,6 @@ article[class~="type-page"] .entry-content{
 
 .entry-content{
 	a:hover{
-		background-color:#000;
 		padding:2px;
 		margin:-2px;
 	}
@@ -527,6 +526,10 @@ article[class~="type-page"] .entry-content{
 /*--------------------------------------------------------------------
 		Portfolio
 --------------------------------------------------------------------*/
+.portfolio_item, .portfolio_item * {
+	@include box-sizing;
+}
+
 .portfolio_item{
 	@include trans-grey;
 	margin:12px auto;
@@ -537,12 +540,10 @@ article[class~="type-page"] .entry-content{
 	color:inherit;
 	display: block;
 	width: 100%;
-	@include box-sizing;
-	border: 1px solid #555;
 	overflow: hidden;
 	
 	&:hover{
-		border:1px solid white;
+		@include trans-color;
 	}
 	@include breakpoint(papa-bear){
 		width:49.5%;
@@ -560,7 +561,7 @@ article[class~="type-page"] .entry-content{
 		display:block;
 		width:100%;
 		height:100%;
-		
+
 		@include breakpoint(mama-bear){
 			display: table;
 			height:100%;
@@ -573,27 +574,27 @@ article[class~="type-page"] .entry-content{
 			display:inherit;
 			width: inherit;
 			height: inherit;
+			color: #fff;
+			text-shadow: 0 0 1px black, 0 0 1px black;
+			padding: 8px;
 		
 			@include breakpoint(mama-bear){
 				display: table-cell;
 				vertical-align: middle;
+				color: $main-text-color;
+				text-shadow: none;
+				padding:5px;
 			}
 			@include breakpoint(baby-bear){
-				padding:5px;
 			}
 		}
 	}
 	
 	%stats_h3{
 		position: relative;
-		text-shadow: 
-			0 0 5px #000,
-			0 0 2px #000,
-			0 0 3px #000;
 	}
 	.stats{
 		@extend %stats_h3;
-		color:#ccc;
 		
 		@include breakpoint(baby-bear){
 			display: block;
@@ -606,7 +607,6 @@ article[class~="type-page"] .entry-content{
 	}
 	h3{
 		@extend %stats_h3;
-		color:#fff;
 		margin-bottom:1em;
 	}
 	.portfolio_image{
@@ -636,8 +636,8 @@ div.section{
 
 	.section_heading{
 		font-size:2em;
-		font-family:Georgia, "Times New Roman", Times, serif;
 		border-bottom:1px dotted #999;
+		margin-bottom: 0.75em;
 		display:block;
 		line-height: normal;
 	}
@@ -689,7 +689,7 @@ div.section{
 			display: block;
 			margin-right:0;
 			font-style:italic;
-			color:#555;
+			color: lighten($main-text-color, 35);
 			padding-left: 2em;
 			
 			@include breakpoint(papa-bear){
@@ -787,8 +787,6 @@ div.row{
 *********************************************************************/
 
 footer{
-	background: -webkit-linear-gradient(#222 0%, #444 10px);
-	background: linear-gradient(#222 0%, #444 6px);
 	clear:both;
 	text-align:center;
 	margin:30px auto 0;

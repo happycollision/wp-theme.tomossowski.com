@@ -18,15 +18,24 @@
 
 			<h2 class="entry-title"><?php the_title(); ?></h2>
 
+
 	<?php if ( is_archive() || is_search() ) : // Only display excerpts for archives and search. ?>
 			<div class="entry-summary">
 				<?php the_excerpt(); ?>
 			</div><!-- .entry-summary -->
 	<?php else : ?>
 			<div class="entry-content clearfix">
+
 				<?php if(!is_page('resume')) { ?><div class="inner_wrapper"><? } ?>
-				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyten' ) ); ?>
-				<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'twentyten' ), 'after' => '</div>' ) ); ?>
+
+					<?php if (is_page('biography')) : ?>
+						<img class="bio-image" src="<?php bloginfo('template_directory');?>/images/home_image.jpg" alt="Tom Ossowski Headshot" />
+					<?php endif; ?>
+					
+					<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyten' ) ); ?>
+					
+					<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'twentyten' ), 'after' => '</div>' ) ); ?>
+					
 				<?php if(!is_page('resume')) { ?></div><? } ?>
 			</div><!-- .entry-content -->
 	<?php endif; ?>

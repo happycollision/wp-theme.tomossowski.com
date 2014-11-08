@@ -53,7 +53,6 @@ if(count($wp_query->posts) > 0){
 
 <?php if(is_front_page()):?>
 <div id="praise_box" class="clearfix">
-	<img src="<?php bloginfo('template_directory');?>/images/home_image.jpg" alt="Tom Ossowski Headshot" />
 	<?php $praise = new WP_Query("post_type=praise&showposts=1&orderby=rand");
 		if($praise->have_posts()): while ($praise->have_posts()) : $praise->the_post(); 
 			$custom = get_post_custom($post->ID);
