@@ -6,7 +6,10 @@
     
     <title><?php wp_title( '|', true, 'right' );?></title>
     <meta name="viewport" content="width=device-width">
-    
+
+		<script src="//use.typekit.net/lbo3qcx.js"></script>
+		<script>try{Typekit.load();}catch(e){}</script>    
+
     <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
     <script src="<?php bloginfo('template_directory');?>/js/vendor/modernizr-2.6.2.min.js"></script>
 
